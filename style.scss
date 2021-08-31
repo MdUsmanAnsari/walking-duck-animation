@@ -1,0 +1,334 @@
+//Inspired by: https://dribbble.com/shots/2941303-Chick/attachments/2941303-Chick?mode=media
+
+:root {
+  --color-yellow: #ffed02;
+  --color-light-orange-1: #fece00;
+  --color-light-orange-2: #fcaa1d;
+  --color-orange: #f57a00;
+  --color-blue-1: #48befd;
+  --color-blue-2: #3ba5f1;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-blue-1);
+  height: 100vh;
+  display: grid;
+  place-content: center;
+  overflow: hidden;
+}
+
+.duck {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__head {
+    align-self: flex-end;
+    width: 6rem;
+    height: 4rem;
+    border-radius: 8rem 8rem 0 0;
+    background-color: var(--color-yellow);
+    position: relative;
+    transform: translateY(1px);
+    z-index: 1;
+
+    &::after,
+    &::before {
+      content: "";
+      position: absolute;
+      border-radius: 1rem;
+      background-color: var(--color-yellow);
+      width: 0.4rem;
+      height: 2rem;
+      top: 0;
+    }
+
+    &::after {
+      left: 44%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+    }
+
+    &::before {
+      left: 45%;
+      transform: translate(-50%, -50%) rotate(10deg);
+    }
+  }
+
+  &__white {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    width: 0.6rem;
+    height: 1.3rem;
+    transform: rotate(40deg);
+    border-radius: 50%;
+    border-left: 0.2rem solid #fff;
+  }
+
+  &__eye {
+    position: absolute;
+    bottom: 0.2rem;
+    right: 1rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background-color: #000;
+    animation: eye-animation 1s infinite linear;
+
+    &--shadow {
+      position: absolute;
+      bottom: -0.5rem;
+      right: 2rem;
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 50%;
+      background-color: var(--color-light-orange-2);
+      z-index: 1;
+    }
+  }
+
+  &__mouth {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    width: 1rem;
+    height: 1.2rem;
+    transform: translate(90%, -50%);
+    clip-path: polygon(0 0, 100% 40%, 100% 60%, 0% 100%);
+    border-radius: 0 1rem 1rem 0;
+    background-color: var(--color-orange);
+  }
+
+  &__body {
+    width: 9.5rem;
+    height: 5rem;
+    border-radius: 1rem 0 16rem 16rem;
+    background-color: var(--color-yellow);
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 105%;
+      height: 200%;
+      left: 50%;
+      top: -95%;
+      transform: translate(-50%, 0.02rem) rotate(-6deg);
+      border-radius: 50%;
+      border-bottom: 1rem solid var(--color-light-orange-2);
+    }
+  }
+
+  &__wing {
+    position: absolute;
+    left: 0.6rem;
+    top: 55%;
+    width: 4rem;
+    height: 2.4rem;
+    border-radius: 1rem 1rem 4rem 4rem;
+    background-color: var(--color-light-orange-1);
+    transform: translate(0, -50%);
+    transform-origin: right;
+    animation: wing-animation 1s linear infinite;
+    z-index: 1;
+  }
+
+  &__foot {
+    position: absolute;
+    width: 0.6rem;
+    height: 2rem;
+    background-color: var(--color-orange);
+    z-index: -1;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 2rem;
+      height: 0.6rem;
+      bottom: 0rem;
+      left: -0.5rem;
+      background-color: var(--color-orange);
+      border-radius: 1rem;
+    }
+
+    &--1 {
+      left: 40%;
+      bottom: 0;
+      transform: translate(-50%, 80%);
+      animation: foot-ans 1s linear infinite;
+    }
+
+    &--2 {
+      left: 40%;
+      bottom: 0;
+      transform: translate(-50%, 80%);
+      animation: foot-ans 1s 0.5s linear infinite;
+    }
+  }
+}
+
+.surface {
+  position: absolute;
+  bottom: -1.9rem;
+  left: 55%;
+  transform: translateX(-50%);
+  background-color: var(--color-blue-2);
+  width: 7.5rem;
+  height: 0.5rem;
+  border-radius: 1rem;
+  animation: surface-animation 0.5s linear infinite;
+}
+
+@keyframes surface-animation {
+  0%,
+  100% {
+    transform: translateX(-50%) scaleX(0.9);
+  }
+
+  50% {
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+@keyframes foot-ans {
+  0% {
+    transform: translate(-50%, 80%) rotate(0deg);
+  }
+
+  10% {
+    transform: translate(-150%, 80%) rotate(10deg);
+  }
+
+  20% {
+    transform: translate(-150%, 10%) rotate(10deg);
+  }
+
+  40% {
+    transform: translate(400%, 10%) rotate(-20deg);
+  }
+
+  60% {
+    transform: translate(600%, 60%) rotate(-20deg);
+  }
+
+  70% {
+    transform: translate(500%, 60%) rotate(0deg);
+  }
+}
+
+.duck__inner {
+  animation: bird-up-down 0.5s linear infinite;
+}
+
+@keyframes bird-up-down {
+  0%,
+  100% {
+    transform: translateY(0.4rem);
+  }
+
+  50% {
+    transform: translateY(0rem);
+  }
+}
+
+@keyframes wing-animation {
+  0%,
+  100% {
+    transform: translate(0, -50%) rotate(16deg);
+  }
+
+  50% {
+    transform: translate(0, -50%) rotate(-2deg);
+  }
+}
+
+@keyframes eye-animation {
+  0%,
+  20% {
+    transform: scaleY(1);
+  }
+
+  10% {
+    transform: scaleY(0);
+  }
+}
+
+// Clouds
+
+.cloud {
+  position: absolute;
+  top: 10vh;
+  left: 0;
+  width: 5rem;
+  height: 3rem;
+  border-radius: 6rem 6rem 0 1rem;
+  background-color: white;
+  transform: translateX(110vw);
+  animation: cloud-animation-1 10s linear infinite;
+
+  &--2,
+  &--4 {
+    top: 20vh;
+    transform: translateX(120vw) scale(0.8);
+    animation: cloud-animation-2 10s 2.5s linear infinite;
+  }
+
+  &--3 {
+    animation-delay: 5s;
+  }
+
+  &--4 {
+    animation-delay: 7.5s;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 6rem;
+    height: 3.5rem;
+    bottom: 0;
+    border-radius: 6rem 10rem 1rem 0;
+    transform: translateX(3rem);
+    background-color: #fff;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 4rem;
+    height: 3rem;
+    bottom: 2rem;
+    border-radius: 10rem 10rem 0 0;
+    transform: translateX(2rem);
+    background-color: #fff;
+  }
+}
+
+@keyframes cloud-animation-1 {
+  0% {
+    transform: translateX(110vw);
+  }
+
+  100% {
+    transform: translateX(-50vw);
+  }
+}
+
+@keyframes cloud-animation-2 {
+  0% {
+    transform: translateX(110vw) scale(0.8);
+  }
+
+  100% {
+    transform: translateX(-50vw) scale(0.8);
+  }
+}
