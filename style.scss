@@ -7,6 +7,8 @@
   --color-orange: #f57a00;
   --color-blue-1: #48befd;
   --color-blue-2: #3ba5f1;
+  --duck-speed: 1s;
+  --duck-speed-half: calc(var(--duck-speed) / 2);
 }
 
 *,
@@ -29,6 +31,11 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
+
+  &__wrapper {
+    display: grid;
+    place-content: center;
+  }
 
   &__head {
     align-self: flex-end;
@@ -138,7 +145,7 @@ body {
     background-color: var(--color-light-orange-1);
     transform: translate(0, -50%);
     transform-origin: right;
-    animation: wing-animation 1s linear infinite;
+    animation: wing-animation var(--duck-speed) linear infinite;
     z-index: 1;
   }
 
@@ -160,18 +167,20 @@ body {
       border-radius: 1rem;
     }
 
-    &--1 {
-      left: 40%;
-      bottom: 0;
-      transform: translate(-50%, 80%);
-      animation: foot-ans 1s linear infinite;
-    }
-
+    &--1,
     &--2 {
       left: 40%;
       bottom: 0;
       transform: translate(-50%, 80%);
-      animation: foot-ans 1s 0.5s linear infinite;
+    }
+
+    &--1 {
+      animation: foot-ans var(--duck-speed) linear infinite;
+    }
+
+    &--2 {
+      animation: foot-ans var(--duck-speed) var(--duck-speed-half) linear
+        infinite;
     }
   }
 }
@@ -182,10 +191,10 @@ body {
   left: 55%;
   transform: translateX(-50%);
   background-color: var(--color-blue-2);
-  width: 7.5rem;
+  width: 8rem;
   height: 0.5rem;
   border-radius: 1rem;
-  animation: surface-animation 0.5s linear infinite;
+  animation: surface-animation var(--duck-speed-half) linear infinite;
 }
 
 @keyframes surface-animation {
@@ -226,7 +235,7 @@ body {
 }
 
 .duck__inner {
-  animation: bird-up-down 0.5s linear infinite;
+  animation: bird-up-down var(--duck-speed-half) linear infinite;
 }
 
 @keyframes bird-up-down {
@@ -315,7 +324,7 @@ body {
 
 @keyframes cloud-animation-1 {
   0% {
-    transform: translateX(110vw);
+    transform: translate(110vw);
   }
 
   100% {

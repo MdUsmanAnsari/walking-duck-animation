@@ -5,6 +5,8 @@
   --color-orange: #f57a00;
   --color-blue-1: #48befd;
   --color-blue-2: #3ba5f1;
+  --duck-speed: 1s;
+  --duck-speed-half: calc(var(--duck-speed) / 2);
 }
 
 *,
@@ -34,6 +36,12 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   position: relative;
+}
+
+.duck__wrapper {
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
 }
 
 .duck__head {
@@ -154,8 +162,8 @@ body {
           transform: translate(0, -50%);
   -webkit-transform-origin: right;
           transform-origin: right;
-  -webkit-animation: wing-animation 1s linear infinite;
-          animation: wing-animation 1s linear infinite;
+  -webkit-animation: wing-animation var(--duck-speed) linear infinite;
+          animation: wing-animation var(--duck-speed) linear infinite;
   z-index: 1;
 }
 
@@ -178,22 +186,21 @@ body {
   border-radius: 1rem;
 }
 
-.duck__foot--1 {
+.duck__foot--1, .duck__foot--2 {
   left: 40%;
   bottom: 0;
   -webkit-transform: translate(-50%, 80%);
           transform: translate(-50%, 80%);
-  -webkit-animation: foot-ans 1s linear infinite;
-          animation: foot-ans 1s linear infinite;
+}
+
+.duck__foot--1 {
+  -webkit-animation: foot-ans var(--duck-speed) linear infinite;
+          animation: foot-ans var(--duck-speed) linear infinite;
 }
 
 .duck__foot--2 {
-  left: 40%;
-  bottom: 0;
-  -webkit-transform: translate(-50%, 80%);
-          transform: translate(-50%, 80%);
-  -webkit-animation: foot-ans 1s 0.5s linear infinite;
-          animation: foot-ans 1s 0.5s linear infinite;
+  -webkit-animation: foot-ans var(--duck-speed) var(--duck-speed-half) linear infinite;
+          animation: foot-ans var(--duck-speed) var(--duck-speed-half) linear infinite;
 }
 
 .surface {
@@ -203,11 +210,11 @@ body {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   background-color: var(--color-blue-2);
-  width: 7.5rem;
+  width: 8rem;
   height: 0.5rem;
   border-radius: 1rem;
-  -webkit-animation: surface-animation 0.5s linear infinite;
-          animation: surface-animation 0.5s linear infinite;
+  -webkit-animation: surface-animation var(--duck-speed-half) linear infinite;
+          animation: surface-animation var(--duck-speed-half) linear infinite;
 }
 
 @-webkit-keyframes surface-animation {
@@ -289,8 +296,8 @@ body {
 }
 
 .duck__inner {
-  -webkit-animation: bird-up-down 0.5s linear infinite;
-          animation: bird-up-down 0.5s linear infinite;
+  -webkit-animation: bird-up-down var(--duck-speed-half) linear infinite;
+          animation: bird-up-down var(--duck-speed-half) linear infinite;
 }
 
 @-webkit-keyframes bird-up-down {
@@ -423,8 +430,8 @@ body {
 
 @-webkit-keyframes cloud-animation-1 {
   0% {
-    -webkit-transform: translateX(110vw);
-            transform: translateX(110vw);
+    -webkit-transform: translate(110vw);
+            transform: translate(110vw);
   }
   100% {
     -webkit-transform: translateX(-50vw);
@@ -434,8 +441,8 @@ body {
 
 @keyframes cloud-animation-1 {
   0% {
-    -webkit-transform: translateX(110vw);
-            transform: translateX(110vw);
+    -webkit-transform: translate(110vw);
+            transform: translate(110vw);
   }
   100% {
     -webkit-transform: translateX(-50vw);
